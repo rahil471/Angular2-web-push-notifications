@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { PushNotificationsService } from 'angular2-notifications'; //import the service
+import { PushNotificationsService} from 'ng-push';
 
 @Component({
   selector: 'app-root',
@@ -8,9 +8,8 @@ import { PushNotificationsService } from 'angular2-notifications'; //import the 
 })
 export class AppComponent {
   title = 'Web push Notifications!';
-
-  constructor(private _pushNotifications: PushNotificationsService){
-    _pushNotifications.requestPermission(); // request for permission as soon as component loads
+  constructor( private _pushNotifications: PushNotificationsService ) {
+    this._pushNotifications.requestPermission();
   }
 
   notify(){ //our function to be called on click
@@ -18,7 +17,7 @@ export class AppComponent {
       body: "The truth is, I'am Iron Man!",
       icon: "assets/images/ironman.png" //adding an icon
     }
-    let notify = this._pushNotifications.create('Iron Man', options).subscribe( //creates a notification
+     this._pushNotifications.create('Iron Man', options).subscribe( //creates a notification
         res => console.log(res),
         err => console.log(err)
     );
